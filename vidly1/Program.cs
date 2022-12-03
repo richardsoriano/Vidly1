@@ -37,11 +37,17 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 //app.MapControllerRoute(
-    //"MoviesByReleaseDate",
-   // "movies/released/{year}/{month}",
-    //new { controller = "Movies", action = "ByReleaseDate" },
-   // new { year=@"\d{4}", month=@"\d{2}"}
-   //);
+//"MoviesByReleaseDate",
+// "movies/released/{year}/{month}",
+//new { controller = "Movies", action = "ByReleaseDate" },
+// new { year=@"\d{4}", month=@"\d{2}"}
+//);
+app.MapControllerRoute(
+    "Details",
+    "customers/details/{id}",
+    new { controller = "Customers", action = "edit" },
+    new { id = @"\d" }
+    );
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

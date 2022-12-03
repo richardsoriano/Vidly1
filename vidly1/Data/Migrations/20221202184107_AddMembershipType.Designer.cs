@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vidly1.Data;
 
@@ -11,9 +12,10 @@ using vidly1.Data;
 namespace vidly1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221202184107_AddMembershipType")]
+    partial class AddMembershipType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,22 +240,18 @@ namespace vidly1.Data.Migrations
                     b.Property<byte>("MembershipTypeId")
                         .HasColumnType("tinyint");
 
-                    b.Property<byte>("MembershipTypesId")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MembershipTypesId");
+                    b.HasIndex("MembershipTypeId");
 
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("vidly1.Models.MembershipTypes", b =>
+            modelBuilder.Entity("vidly1.Models.MembershipType", b =>
                 {
                     b.Property<byte>("Id")
                         .HasColumnType("tinyint");
@@ -269,7 +267,7 @@ namespace vidly1.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MembershipTypes");
+                    b.ToTable("MembershipType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -325,13 +323,13 @@ namespace vidly1.Data.Migrations
 
             modelBuilder.Entity("vidly1.Models.Customer", b =>
                 {
-                    b.HasOne("vidly1.Models.MembershipTypes", "MembershipTypes")
+                    b.HasOne("vidly1.Models.MembershipType", "MembershipType")
                         .WithMany()
-                        .HasForeignKey("MembershipTypesId")
+                        .HasForeignKey("MembershipTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("MembershipTypes");
+                    b.Navigation("MembershipType");
                 });
 #pragma warning restore 612, 618
         }
