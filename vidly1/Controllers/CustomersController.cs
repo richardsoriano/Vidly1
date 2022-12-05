@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vidly1.Data;
-//using vidly1.ViewModels;
+using vidly1.Models;
 namespace vidly1.Controllers
 {
     public class CustomersController : Controller
@@ -27,7 +27,7 @@ namespace vidly1.Controllers
         {
             //var customers = GetCustomers();
             var customers = _context.Customers.Include(c => c.MembershipTypes).ToList();
-
+            //var customers = _context.Customers.Include(c => c.Name).ToList();
             return View(customers);
         }
         public ActionResult Details(int id)
@@ -39,13 +39,16 @@ namespace vidly1.Controllers
 
             return View(customer);
         }
-//        private IEnumerable<Customer> GetCustomers()
- //       {
- //           return new List<Customer>
- //           {
- //               new Customer { Id = 1, Name = "John Smith" },
- //               new Customer { Id = 2, Name = "Mary Williams" }
- //           };
- //       }
+        //public ActionResult New() {
+        //    return View();
+        //}
+        //        private IEnumerable<Customer> GetCustomers()
+        //       {
+        //           return new List<Customer>
+        //           {
+        //               new Customer { Id = 1, Name = "John Smith" },
+        //               new Customer { Id = 2, Name = "Mary Williams" }
+        //           };
+        //       }
     }//
 }

@@ -1,0 +1,18 @@
+﻿@model vidly1.Models.Movie
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = @Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@Model.Name</h2>
+
+<ul>
+  
+    <li>@Model.GenreType.Name</li>
+    <li>@Model.ReleaseDate.ToString("dddd, MMMM d yyyy")</li>
+    <li>@Model.DateAdded.ToString("dddd, MMMM d yyyy")</li>
+    <li>@Model.NumberInStock</li>
+
+</ul>
