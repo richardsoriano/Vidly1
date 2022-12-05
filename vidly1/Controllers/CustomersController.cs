@@ -27,7 +27,7 @@ namespace vidly1.Controllers
         {
             //var customers = GetCustomers();
             var customers = _context.Customers.Include(c => c.MembershipTypes).ToList();
-
+            //var customers = _context.Customers.Include(c => c.Name).ToList();
             return View(customers);
         }
         public ActionResult Details(int id)

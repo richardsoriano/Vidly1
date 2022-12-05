@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vidly1.Data;
 
@@ -11,9 +12,10 @@ using vidly1.Data;
 namespace vidly1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221205001517_AddBirthdateToCustomer")]
+    partial class AddBirthdateToCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,7 +234,7 @@ namespace vidly1.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("Birthdate")
+                    b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsSubscribedToNewsletter")
@@ -256,20 +258,6 @@ namespace vidly1.Data.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("vidly1.Models.GenreType", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnType("tinyint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GenreType");
-                });
-
             modelBuilder.Entity("vidly1.Models.MembershipTypes", b =>
                 {
                     b.Property<byte>("Id")
@@ -291,37 +279,6 @@ namespace vidly1.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MembershipTypes");
-                });
-
-            modelBuilder.Entity("vidly1.Models.Movie", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte>("GenreTypeId")
-                        .HasColumnType("tinyint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("NumberInStock")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GenreTypeId");
-
-                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -384,17 +341,6 @@ namespace vidly1.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("MembershipTypes");
-                });
-
-            modelBuilder.Entity("vidly1.Models.Movie", b =>
-                {
-                    b.HasOne("vidly1.Models.GenreType", "GenreType")
-                        .WithMany()
-                        .HasForeignKey("GenreTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GenreType");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<vidly1.Models.Movies>
+
+@{
+    //model vidly1.Models.Customer
+
+    ViewBag.Title = "Movies";
+
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h2>Movies</h2>
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+
+else
+{
+    <table>
+        <thead>
+            <tr><th>Movies</th><th>Genres</th></tr>
+        </thead>
+        <tbody>
+<h2>pump movies</h2>
+                   </tbody>
+    </table>
+}
+
+
+
