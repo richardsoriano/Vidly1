@@ -21,7 +21,6 @@
 
 else
 {
-<<<<<<< HEAD
 <table class="table table-bordered table-hover">
     <thead>
     
@@ -36,25 +35,12 @@ else
         @foreach (var movie in Model)
         
         {
-            <tr>
-            <tr>
-                
+     <tr>
                 <td>@Html.ActionLink(movie.Name, "Details", "Movies", new {id = movie.Id}, null)</td>
-                <td>@movie.GenreType.Name</td>
-            </tr>
-            </tr>
+                <td>@movie.Genre.Name</td>
+            </tr>    
         }
-        
     </tbody>
-=======
-    <table>
-        <thead>
-            <tr><th>Movies</th><th>Genres</th></tr>
-        </thead>
-        <tbody>
-<h2>pump movies</h2>
-                   </tbody>
->>>>>>> c16370ff062cf943f08d470515b56fade20f828e
     </table>
 }
 
