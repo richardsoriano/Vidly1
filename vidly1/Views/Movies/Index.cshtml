@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-﻿@model IEnumerable<vidly1.Models.Movie>
-=======
-﻿@model IEnumerable<vidly1.Models.Movies>
->>>>>>> c16370ff062cf943f08d470515b56fade20f828e
+@model IEnumerable<vidly1.Models.Movie>
 
 @{
-    //model vidly1.Models.Customer
 
     ViewBag.Title = "Movies";
-
-
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 <h2>Movies</h2>
 @if (!Model.Any())
@@ -37,7 +29,7 @@ else
         {
      <tr>
                 <td>@Html.ActionLink(movie.Name, "Details", "Movies", new {id = movie.Id}, null)</td>
-                <td>@movie.Genre.Name</td>
+                <td>@movie.GenreType.Name</td>
             </tr>    
         }
     </tbody>

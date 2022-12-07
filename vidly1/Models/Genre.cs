@@ -1,4 +1,5 @@
-﻿namespace vidly1.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace vidly1.Models
 {
     public class GenreType
     {
